@@ -1,11 +1,37 @@
 <html>
-    <head></head>
-    <body>
-        Work!
 
-        <!-- Jquery -->
-        <script src="./jquery.min.js"> </script>
-        <!-- Etherjs -->
-        <script src="./ethers-v4.min.js"> </script>
-    </body>
+<head>
+    <title>离线以太坊钱包 v0.1</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>
+            以太坊离线钱包<small>v0.1</small>
+        </h1>
+        <div class="panel">
+            <div class="menu pl-bars">
+                <button class="btn item active" data-way="random" data-tab="way1">傻瓜式</button>
+                <button class="btn item" data-way="nice" data-tab="way2">挖靓号</button>
+                <button class="btn item" data-way="high" data-tab="way3">高级黑</button>
+            </div>
+            <div class="pl-body">
+                <div class="settings">
+                    <div class="settings-cfg">
+                        <div class="item" id="way1">way1</div>
+                        <div class="item" id="way2" style="display: none;">way2</div>
+                        <div class="item" id="way3" style="display: none;">way3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jquery -->
+    <script src="./jquery.min.js"> </script>
+    <!-- Etherjs -->
+    <script src="./ethers-v4.min.js"> </script>
+    <script src="./app.js"></script>
+</body>
+
 </html>
