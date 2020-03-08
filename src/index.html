@@ -23,7 +23,85 @@
                             <button class="btn btn-big" name="createWallet">创建账户</button>
                             <small>使用默认配置，随机生成。</small>
                         </div>
-                        <div class="item" id="way2" style="display: none;">way2</div>
+                        <div class="item" id="way2" style="display: none;height: 100px;">
+                            <div class="left mr2">
+                                <div class="mb1">
+                                    <label>账户地址格式：</label>
+                                    <select id="way2_condition">
+                                        <option value="prefix">开头</option>
+                                        <option value="suffix">结尾</option>
+                                        <option value="contains">包含</option>
+                                    </select>
+                                    <input type="text" id="way2_str" />
+                                </div>
+                                <div class="mb1">
+                                    <label for="">查找线程数：</label>
+                                    <input type="number" id="way2_thread" value="1" min="1" />
+                                </div>
+                            </div>
+
+                            <div class="left">
+                                <button type="button" id="runFind" class="btn btn-icon">
+                                    <svg class="icon start" viewBox="0 0 1024 1024" version="1.1"
+                                        xmlns="http://www.w3.org/2000/svg" p-id="8818" width="48" height="48">
+                                        <path
+                                            d="M512 1024C229.23264 1024 0 794.76736 0 512S229.23264 0 512 0s512 229.23264 512 512-229.23264 512-512 512z m190.42304-563.58912L451.77856 296.3456c-66.4064-44.58496-62.65856 0-62.65856 0v420.41344c0 62.13632 62.65856 10.25024 62.65856 10.25024l250.64448-164.06528c78.32576-52.65408 0-102.53312 0-102.53312z"
+                                            p-id="8819"></path>
+                                    </svg>
+                                    <svg fill="red" class="icon stop" style="display: none;" viewBox="0 0 1025 1024"
+                                        version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="19638" width="48"
+                                        height="48">
+                                        <path
+                                            d="M512.268258 1022.835842c-68.658678 0-135.399619-13.564433-198.369591-40.316509-60.752236-25.809077-115.373446-62.712976-162.346233-109.685763-46.971763-46.971763-83.875662-101.592974-109.685763-162.346233C15.115619 647.517366 1.551186 580.777449 1.551186 512.118771S15.115619 376.719151 41.866671 313.74918c25.810101-60.752236 62.714-115.373446 109.685763-162.346233 46.972787-46.971763 101.593997-83.875662 162.346233-109.685763 62.969971-26.751052 129.710912-40.315485 198.369591-40.315485s135.398595 13.564433 198.368567 40.315485c60.752236 25.810101 115.373446 62.714 162.346233 109.685763 46.971763 46.972787 83.875662 101.593997 109.685763 162.346233 26.752076 62.969971 40.316509 129.710912 40.316509 198.369591s-13.564433 135.398595-40.316509 198.368567c-25.809077 60.75326-62.712976 115.37447-109.685763 162.346233-46.971763 46.972787-101.592974 83.876686-162.346233 109.685763C647.666853 1009.27141 580.925912 1022.835842 512.268258 1022.835842zM512.268258 50.548195c-62.018782 0-122.293887 12.247716-179.152287 36.403219-54.923257 23.333323-104.317532 56.709936-146.810821 99.204249s-75.870926 91.888588-99.204249 146.810821c-24.155503 56.8584-36.403219 117.133505-36.403219 179.152287 0 62.017758 12.247716 122.292863 36.403219 179.152287 23.333323 54.923257 56.709936 104.317532 99.204249 146.811845 42.493289 42.493289 91.888588 75.870926 146.810821 99.204249 56.8584 24.155503 117.133505 36.403219 179.152287 36.403219 62.017758 0 122.292863-12.247716 179.152287-36.403219 54.923257-23.333323 104.317532-56.71096 146.811845-99.204249 42.493289-42.494313 75.870926-91.888588 99.204249-146.811845 24.155503-56.8584 36.403219-117.133505 36.403219-179.152287s-12.247716-122.293887-36.403219-179.152287c-23.334347-54.923257-56.71096-104.317532-99.205273-146.810821-42.493289-42.493289-91.887565-75.870926-146.810821-99.204249C634.561121 62.795911 574.286016 50.548195 512.268258 50.548195z"
+                                            p-id="19639"></path>
+                                        <path
+                                            d="M655.434047 694.244421 367.12637 694.244421c-21.046987 0-38.170445-17.123458-38.170445-38.170445L328.955925 367.766298c0-21.046987 17.123458-38.170445 38.170445-38.170445l288.307678 0c21.048011 0 38.170445 17.123458 38.170445 38.170445l0 288.307678C693.604492 677.120962 676.482058 694.244421 655.434047 694.244421zM380.150191 643.050154l262.260035 0L642.410226 380.79012 380.150191 380.79012 380.150191 643.050154z"
+                                            p-id="19640"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="left processing" style="display: none;">
+                                <svg fill="#F39C12" width="105" height="105" viewBox="0 0 105 105"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12.5" cy="12.5" r="12.5">
+                                        <animate attributeName="fill-opacity" begin="0s" dur="1s" values="1;.2;1"
+                                            calcMode="linear" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="12.5" cy="52.5" r="12.5" fill-opacity=".5">
+                                        <animate attributeName="fill-opacity" begin="100ms" dur="1s" values="1;.2;1"
+                                            calcMode="linear" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="52.5" cy="12.5" r="12.5">
+                                        <animate attributeName="fill-opacity" begin="300ms" dur="1s" values="1;.2;1"
+                                            calcMode="linear" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="52.5" cy="52.5" r="12.5">
+                                        <animate attributeName="fill-opacity" begin="600ms" dur="1s" values="1;.2;1"
+                                            calcMode="linear" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="92.5" cy="12.5" r="12.5">
+                                        <animate attributeName="fill-opacity" begin="800ms" dur="1s" values="1;.2;1"
+                                            calcMode="linear" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="92.5" cy="52.5" r="12.5">
+                                        <animate attributeName="fill-opacity" begin="400ms" dur="1s" values="1;.2;1"
+                                            calcMode="linear" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="12.5" cy="92.5" r="12.5">
+                                        <animate attributeName="fill-opacity" begin="700ms" dur="1s" values="1;.2;1"
+                                            calcMode="linear" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="52.5" cy="92.5" r="12.5">
+                                        <animate attributeName="fill-opacity" begin="500ms" dur="1s" values="1;.2;1"
+                                            calcMode="linear" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="92.5" cy="92.5" r="12.5">
+                                        <animate attributeName="fill-opacity" begin="200ms" dur="1s" values="1;.2;1"
+                                            calcMode="linear" repeatCount="indefinite" />
+                                    </circle>
+                                </svg>
+                            </div>
+                        </div>
                         <div class="item" id="way3" style="display: none;">way3</div>
                     </div>
                 </div>
