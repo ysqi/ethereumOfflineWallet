@@ -1,3 +1,74 @@
+walletHelp = {
+    randomVars: {
+        x0: 0,
+        y0: 0,
+        sx0: 0,
+        sy0: 0,
+        cnt: 0,
+    },
+    //  copy from http://www.russellcottrell.com/mousePointerRNG.htm
+    randomHex: (e) => {
+        e = (window.event ? window.event : e);
+
+        x1 = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft - e.currentTarget.offsetLeft; // mouse position
+        y1 = e.clientY + document.body.scrollTop + document.documentElement.scrollTop - e.currentTarget.offsetTop;
+
+        sx1 = x1 - walletHelp.randomVars.x0; // distance moved
+        sy1 = y1 - walletHelp.randomVars.y0;
+
+        var oStrSaved = "";
+
+        if ((walletHelp.randomVars.sx0 * sx1 < 0) || (walletHelp.randomVars.sy0 * sy1 < 0)) { // direction change
+
+            xStr = walletHelp.padString(x1.toString(2), 8);
+            yStr = walletHelp.padString(y1.toString(2), 8);
+            xyStr = xStr + yStr;
+
+            jj = Math.ceil(Math.random() * 10); // random number of repeats each time
+
+            for (var j = 0; j < jj; j++) { // repeat
+
+                mR = Math.floor(Math.random() * 65536);
+
+                pStr = walletHelp.padString((parseInt(xyStr, 2) ^ mR).toString(2), 16); // salt the random number with the mouse position
+
+                oStr = "";
+                // hexadecimal
+                for (var i = 0; i < 16; i += 4) {
+                    oStr += parseInt(pStr.substr(i, 4), 2).toString(16);
+                }
+                oStrSaved += oStr;
+                xyStr = walletHelp.fyShuffle(xyStr); // shuffle the bit string for each repeat
+
+            } // repeat
+        } // direction change
+        walletHelp.randomVars.x0 = x1;
+        walletHelp.randomVars.y0 = y1;
+
+        if (sx1 != 0)
+            walletHelp.randomVars.sx0 = sx1;
+        if (sy1 != 0)
+            walletHelp.randomVars.sy0 = sy1;
+        return oStrSaved;
+    },
+    padString(str, n) {
+        var len = str.length;
+        for (var i = 0; i < n - len; i++)
+            str = "0" + str;
+        return str;
+    },
+    fyShuffle(str) {
+        var a = str.split("");
+        for (var i = a.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+        }
+        str = a.join("");
+        return str;
+    }
+}
 App = {
 
     timers: [],//进行中的查找任务
@@ -23,6 +94,12 @@ App = {
         })
         $("#runFind").on("click", e => {
             App.findWallet();
+        })
+        $("#randomDiv").on("mousemove", e => {
+            //生成随机数
+            let str = walletHelp.randomHex();
+            $("#outputTxt").val(str + $("#outputTxt").val());
+            //显示到界面
         })
     },
     // 查找靓号
@@ -112,8 +189,27 @@ App = {
     },
     // 一键创建钱包账户
     createWallet: (e) => {
+        let way = $(e.currentTarget).data("way");
+        var w;
+        switch (way) {
+            case "random":
+                w = ethers.Wallet.createRandom();
+                break;
+            case "custom":
+                //随机内容-> Hash()->
+                // 32 字节的 HASH 值作为 私钥
+                let content = $("#outputTxt").val();
+                let pk = ethers.utils.sha256("0x" + content);
+                pk = ethers.utils.sha256(pk); //double
+                w = new ethers.Wallet(pk);
+                //私钥转换为账户对象?
+                break;
+            default:
+                alert("尚未实现");
+                return;
+        }
         // 随机钱包
-        App.setWallet(ethers.Wallet.createRandom());
+        App.setWallet(w);
     },
     setPK: () => {
         if (App.config.showPK) {
