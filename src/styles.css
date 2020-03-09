@@ -1,146 +1,160 @@
-.container{
-    padding-right: 20%;
-    padding-left: 20%;
-    margin-right: auto;
-    margin-left: auto;
+.container {
+  padding-right: 20%;
+  padding-left: 20%;
+  margin-right: auto;
+  margin-left: auto;
 }
-h1{
-    text-align: center;
+h1 {
+  text-align: center;
 }
-.panel > .pl-body{
-    min-width: 100%;
-    min-height: 80%;
-    margin-top: 7px;
+.panel > .pl-body {
+  min-width: 100%;
+  min-height: 80%;
+  margin-top: 7px;
 }
-.panel > .pl-bars{
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.menu > .item{
-    text-align: center;
-    vertical-align: middle;
-    display: inline-block;
-    min-width: 100px;
-    border: solid 1px goldenrod;
-    margin: 0%;
-    padding: 0%;
-    height: 50px;
-    line-height: 50px;
-}
-.menu > .item:hover{
-    background-color: greenyellow;
-    cursor: pointer;
-}
-.menu > .item:disabled{
-    background-color:greenyellow;
-    color: black;
-    cursor: default;
-}
-.menu > .item.active{
-    background-color:greenyellow;
-    color: black;
-}
-.btn{
-    border: solid 1px goldenrod;
-    text-align: center;
-    vertical-align: middle;
-}
-.btn:hover{
-    background-color: greenyellow;
-    cursor: pointer;
-}
-.btn:focus {outline:0;}
-
-.btn-icon{
-    border: 0px;
-    background: none;
-    border-radius:50%;
-    width: 48px;
-    height: 48px;
-    padding: 0;
-}
-.btn-big{
-    margin-top: 12px;
-    width: 120px;
-    height: 60px;
-}
-.absolute{
-    position: absolute;
-}
-.right{
-    float: right;
-}
-.left{
-    float: left;
-}
-.wallet  label{
-    font-weight: bold;
-    padding: 5px;
-}
-.settings{
-    width: 100%;
-    padding: 5px;
-}
-.settings-cfg .item{
-    padding: 12px;
-    width: 100%;
-    height: 100%;
-    border: 1px dotted #785;
-    border-top:5px solid greenyellow;
-    background: #f5f5f5;
+.panel > .pl-bars {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-.settings-cfg .item input,select{
-    height: 30px;
+.menu > .item {
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  min-width: 100px;
+  border: solid 1px goldenrod;
+  margin: 0%;
+  padding: 0%;
+  height: 50px;
+  line-height: 50px;
 }
-.settings-cfg .item label{
-    padding-right: 2px;
-    width: 130px;
-    text-align: right;
-    display:inline-block;
+.menu > .item:hover {
+  background-color: greenyellow;
+  cursor: pointer;
 }
-.mb1{margin-bottom: 10px;}
-.mr1{margin-right: 10px;}
-.mr2{margin-right: 20px;}
-.settings-btns{
-    width: 18%;
-    line-height: 100%;
+.menu > .item:disabled {
+  background-color: greenyellow;
+  color: black;
+  cursor: default;
 }
-.settings-btns .btn{
-    width: 100%;
-    height: 50%;
+.menu > .item.active {
+  background-color: greenyellow;
+  color: black;
+}
+.btn {
+  border: solid 1px goldenrod;
+  text-align: center;
+  vertical-align: middle;
+}
+.btn:hover {
+  background-color: greenyellow;
+  cursor: pointer;
+}
+.btn:focus {
+  outline: 0;
 }
 
-.wallet{
-    margin-top: 12px;
-    height: 100%;
+.btn-icon {
+  border: 0px;
+  background: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  padding: 0;
 }
-.item-bar .info{
-    width: 100%;
-    height: auto;
-    vertical-align: middle;
-    line-height: 40px;
-    border: 1px dotted gainsboro;
-    margin-bottom: 12px;
-    background-color: lemonchiffon;
-    word-break: break-all;
-    margin: 5px;
-    padding: 5px;
+.btn-big {
+  margin-top: 12px;
+  width: 120px;
+  height: 60px;
 }
-.icon-down{
-    text-align: center;
+.absolute {
+  position: absolute;
 }
-.pad{
-    padding: 5px;
+.right {
+  float: right;
 }
-.processing{
-    width: 200px;
-    text-align: center;
-    background-repeat: no-repeat;
-    background-position: center;
+.left {
+  float: left;
 }
-.loading{
-    text-align: center;
-    vertical-align: middle;
+.wallet label {
+  font-weight: bold;
+  padding: 5px;
+}
+.settings {
+  width: 100%;
+  padding: 5px;
+}
+.settings-cfg .item {
+  padding: 12px;
+  width: 100%;
+  height: 100%;
+  border: 1px dotted #785;
+  border-top: 5px solid greenyellow;
+  background: #f5f5f5;
+}
+
+.settings-cfg .item input,
+select {
+  height: 30px;
+}
+.settings-cfg .item label {
+  padding-right: 2px;
+  width: 130px;
+  text-align: right;
+  display: inline-block;
+}
+.mb1 {
+  margin-bottom: 10px;
+}
+.mr1 {
+  margin-right: 10px;
+}
+.mr2 {
+  margin-right: 20px;
+}
+.settings-btns {
+  width: 18%;
+  line-height: 100%;
+}
+.settings-btns .btn {
+  width: 100%;
+  height: 50%;
+}
+
+.wallet {
+  margin-top: 12px;
+  height: 100%;
+}
+.item-bar .info {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+  line-height: 40px;
+  border: 1px dotted gainsboro;
+  margin-bottom: 12px;
+  background-color: lemonchiffon;
+  word-break: break-all;
+  margin: 5px;
+  padding: 5px;
+}
+.icon-down {
+  text-align: center;
+}
+.pad {
+  padding: 5px;
+}
+.processing {
+  width: 200px;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.loading {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.processing_bar {
+  color: aquamarine;
+  background-color: aquamarine;
 }

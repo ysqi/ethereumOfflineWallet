@@ -101,6 +101,9 @@ App = {
             $("#outputTxt").val(str + $("#outputTxt").val());
             //显示到界面
         })
+        $("#createKeystore").on("click",e=>{
+            App.exportKeystore(e);
+        })
     },
     // 查找靓号
     findWallet: () => {
@@ -225,6 +228,35 @@ App = {
         btn.find(".closeEye").toggle();//隐藏或显示
         btn.find(".openEye").toggle();
         App.setPK();
+    },
+    // 将当前账户私钥导出到 Keystore文件
+    exportKeystore: (e) => {
+        var password = prompt("请输入加密密码", "");
+        if (password == null) {
+            return;
+        } else if (password == "") {
+            alert("密码不能为空")
+            return;
+        }
+        let btn = $(e.currentTarget);
+        App.wallet.encrypt(password, { scrypt: { N: 2 ** 18 } }, (process) => {
+            var p = Math.floor(process * 100);
+            btn.find(".processing_bar").text(".".repeat(p));
+        }).then(json => {
+            btn.find(".processing_bar").text("");
+
+            var file = new Blob([json], { type: "application/plain" });
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(file);
+            document.body.appendChild(a);
+            a.download = App.wallet.address + ".json";
+            a.click();
+
+            setTimeout(function () {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(a.href);
+            }, 0);
+        });
     }
 }
 
